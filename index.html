@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASMO - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apc-green: #45b7ec;
+            --apc-blue:  #00ddff;
+            --apc-red:#1e2d44;
+            --apc-white: #FFFFFF;
+        }
+        .navbar {
+            background-color: var(--apc-green) !important;
+        }
+        .hero {
+            position: relative;
+            height: 65vh;
+            overflow: hidden;
+        }
+        .hero img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures full coverage */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    object-position: center 25%; /* Moves the image down slightly */
+}
+
+        .hero img.active {
+            opacity: 1;
+        }
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--apc-white);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+        }
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+        .navbar-brand {
+            font-family: 'Lobster', cursive;
+            font-size: 1.8rem;
+        }
+        .btn-primary {
+            background-color: var(--apc-blue);
+            border-color: var(--apc-blue);
+        }
+        .btn-primary:hover {
+            background-color: var(--apc-red);
+            border-color: var(--apc-red);
+        }
+        .footer {
+            background-color: var(--apc-green);
+            color: var(--apc-white);
+        }
+        .navbar-collapse {
+            text-align: center;
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .navbar-brand {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif; /* Modern, clean font */
+    font-weight: bold;
+    font-size: 1.5rem; /* Adjust size as needed */
+}
+
+.brand-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+    margin-right: 10px; /* Space between logo and text */
+}
+
+.brand-name {
+    color: #fff; /* Adjust based on navbar background */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+        .close-btn {
+            position: absolute;
+            top: 0%;
+            right: 15px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--apc-white);
+        }
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 10px;
+            }
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="masmo.jpg" alt="MASMO Logo" class="brand-logo"> 
+            <span class="brand-name">MASMO</span>
+        </a>
+        
+        <!-- Navbar Toggler -->
+        <button class="navbar-toggler" type="button" id="navToggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse position-relative" id="navbarNav">
+            <!-- Close Button Inside Menu -->
+            <button class="close-btn d-lg-none" type="button" id="navClose">&times;</button>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="excos.html">State Excos</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">News & Feeds</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="hero.jpg" class="active" alt="Hero Image">
+        <img src="hero1.jpg" alt="Hero Image 1">
+        <img src="hero2.jpg" alt="Hero Image 2">
+        <img src="hero3.jpg" alt="Hero Image 3">
+        <img src="hero4.jpg" alt="Hero Image 4">
+        <div class="hero-content">
+            <div>
+                <h1 class="fw-bold">Maliya Shitu Media Organization (MASMO)</h1>
+                <p class="lead">Dedicated to promoting the political vision, achievements, and leadership of Senator Barau I. Jibrin, the Deputy Senate President of Nigeria.</p>
+                <a href="about.html" class="btn btn-primary btn-lg">Explore More</a>
+            </div>
+        </div>
+    </header>
+    <!-- State Excos Section -->
+    <section class="container py-5">
+        <h2 class="text-center mb-4">Key State Executives</h2>
+        <div class="row">
+            <!-- Example Exco Member (Repeat for 10 Members) -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="images/exco1.jpg" class="card-img-top" alt="Exco Member">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">John Doe</h5>
+                        <p class="card-text">Rank: Chairman<br>LGA: Kano Central<br>Ward: Ward 1<br>Polling Unit: PU 101</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer text-center py-3">
+        <p>Follow us on:</p>
+        <a href="#" class="text-white me-3">Facebook</a>
+        <a href="#" class="text-white me-3">Twitter</a>
+        <a href="#" class="text-white me-3">Instagram</a>
+        <a href="#" class="text-white">YouTube</a>
+        <p class="mt-3">&copy; 2025 MASMO. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let images = document.querySelectorAll('.hero img');
+        let index = 0;
+
+        function changeImage() {
+            images[index].classList.remove('active');
+            index = (index + 1) % images.length;
+            images[index].classList.add('active');
+        }
+
+        setInterval(changeImage, 5000);
+        document.addEventListener("DOMContentLoaded", function () {
+        const navToggle = document.getElementById("navToggle");
+        const navClose = document.getElementById("navClose");
+        const navbarNav = document.getElementById("navbarNav");
+
+        navToggle.addEventListener("click", function () {
+            navbarNav.classList.add("show");
+            navToggle.style.display = "none";
+        });
+
+        navClose.addEventListener("click", function () {
+            navbarNav.classList.remove("show");
+            navToggle.style.display = "block";
+        });
+    });
+    </script>
+</body>
+</html>
