@@ -10,7 +10,7 @@
         :root {
             --apc-green: #45b7ec;
             --apc-blue:  #00ddff;
-            --apc-red:#1e2d44;
+            --apc-red:#82aae6;
             --apc-white: #FFFFFF;
         }
         .navbar {
@@ -51,6 +51,15 @@
         .hero-content h1 {
             font-size: 2rem;
         }
+        /* Ensure images are centered but not cropped from the top */
+img.rounded-circle {
+    width: 150px;  /* Set a fixed width for all images */
+    height: 150px;  /* Set a fixed height for all images */
+    object-fit: cover;  /* Ensure the images are cropped to fill the circle */
+    object-position: top;  /* Align the top of the image with the circle's top edge */
+    margin-bottom: 20px;  /* Add space below images */
+}
+
         .navbar-brand {
             font-family: 'Lobster', cursive;
             font-size: 1.8rem;
@@ -96,6 +105,17 @@
     color: #fff; /* Adjust based on navbar background */
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-family: 'Caveat', 'Poppins', 'Lobster', 'Pacifico';
+    font-size: 1.3rem; /* Adjust size as needed */
+}
+.card-img-top {
+    width: 100px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures it covers the area without distortion */
+    object-position: top; /* Focuses on the upper part of the image */
+    display: block;
+    margin: 10px auto 0 auto; /* Adds top margin and centers the image */
 }
 
         .close-btn {
@@ -157,22 +177,314 @@
             </div>
         </div>
     </header>
-    <!-- State Excos Section -->
-    <section class="container py-5">
-        <h2 class="text-center mb-4">Key State Executives</h2>
-        <div class="row">
-            <!-- Example Exco Member (Repeat for 10 Members) -->
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="masmo.jpg" class="card-img-top" alt="Exco Member">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">John Doe</h5>
-                        <p class="card-text">Rank: Chairman<br>LGA: Kano Central<br>Ward: Ward 1<br>Polling Unit: PU 101</p>
-                    </div>
+   <!-- Founder & Sponsor Section -->
+<section class="container py-5">
+    <h2 class="text-center mb-4 bg-light">Founder of MASMO</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <img src="shitu1.jpg" class="rounded-circle mb-3" alt="Maliya Shitu">
+            <h3>Shitu Madaki Kunchi</h3>
+            <p>
+                Maliya Shitu is a visionary leader and the driving force behind the **Maliya Shitu Media Organization (MASMO)**. 
+                With a passion for political development and media excellence, he has dedicated his efforts to promoting the leadership 
+                and achievements of **Senator Barau I. Jibrin**, ensuring that his vision for progress reaches the people.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h2 class="text-center mb-4 bg-light">State Key Executives</h2>
+    <div class="row">
+        <!-- Executive Members -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="shitu1.jpg" class="card-img-top" alt="Auwal Muhammad Akushi">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/01</h5>
+                    <p class="fw-bold">Auwal Muhammad Akushi</p>
+                    <p class="card-text">State Chairman</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="Masmo.jpg" class="card-img-top" alt="Abubakar Yahaya Matinko">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/02</h5>
+                    <p class="fw-bold">Abubakar Yahaya Matinko</p>
+                    <p class="card-text">Vice Chairman</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco3.jpg" class="card-img-top" alt="Ibrahim Makwarari">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/03</h5>
+                    <p class="fw-bold">Ibrahim Makwarari</p>
+                    <p class="card-text">State Secretary</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco4.jpg" class="card-img-top" alt="Rabiu Ahmad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/04</h5>
+                    <p class="fw-bold">Rabiu Ahmad</p>
+                    <p class="card-text">Assistant Secretary</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco5.jpg" class="card-img-top" alt="Umar Sayyadi Muhammad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/05</h5>
+                    <p class="fw-bold">Umar Sayyadi Muhammad</p>
+                    <p class="card-text">State DG Media</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco6.jpg" class="card-img-top" alt="Auwal Mamman">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/06</h5>
+                    <p class="fw-bold">Auwal Mamman</p>
+                    <p class="card-text">Organizing Secretary</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco7.jpg" class="card-img-top" alt="Nura Sayyadi Muhammad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/07</h5>
+                    <p class="fw-bold">Nura Sayyadi Muhammad</p>
+                    <p class="card-text">Assistant Organizing Secretary</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco8.jpg" class="card-img-top" alt="Shu’abu Mai Kokara">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/08</h5>
+                    <p class="fw-bold">Shu’abu Mai Kokara</p>
+                    <p class="card-text">Financial Secretary</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco9.jpg" class="card-img-top" alt="Nafiu Jalo">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/09</h5>
+                    <p class="fw-bold">Nafiu Jalo</p>
+                    <p class="card-text">Youth Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco10.jpg" class="card-img-top" alt="Ismal Sharif Bala">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/10</h5>
+                    <p class="fw-bold">Ismal Sharif Bala</p>
+                    <p class="card-text">Deputy Youth Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco11.jpg" class="card-img-top" alt="Zainab Muhammad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/11</h5>
+                    <p class="fw-bold">Zainab Muhammad</p>
+                    <p class="card-text">Woman Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco12.jpg" class="card-img-top" alt="Sadiya Muhammad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/12</h5>
+                    <p class="fw-bold">Sadiya Muhammad</p>
+                    <p class="card-text">Deputy Woman Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco13.jpg" class="card-img-top" alt="Mahmud Ahmad">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/13</h5>
+                    <p class="fw-bold">Mahmud Ahmad</p>
+                    <p class="card-text">PRO</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco14.jpg" class="card-img-top" alt="Nasiru Ibrahim">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/14</h5>
+                    <p class="fw-bold">Nasiru Ibrahim</p>
+                    <p class="card-text">Welfare Director</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco15.jpg" class="card-img-top" alt="Shafaatu Isa Bello">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/15</h5>
+                    <p class="fw-bold">Shafaatu Isa Bello</p>
+                    <p class="card-text">Deputy Welfare Director</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco16.jpg" class="card-img-top" alt="Shazali Yusuf Danjaji">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/16</h5>
+                    <p class="fw-bold">Shazali Yusuf Danjaji</p>
+                    <p class="card-text">Treasurer</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco17.jpg" class="card-img-top" alt="Sumayya Abubakar">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/17</h5>
+                    <p class="fw-bold">Sumayya Abubakar</p>
+                    <p class="card-text">Auditor</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco18.jpg" class="card-img-top" alt="Aminu Ibrahim Dantata">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/18</h5>
+                    <p class="fw-bold">Aminu Ibrahim Dantata</p>
+                    <p class="card-text">Kano-Central Chairman</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco19.jpg" class="card-img-top" alt="Bintaisah Dala">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/19</h5>
+                    <p class="fw-bold">Bintaisah Dala</p>
+                    <p class="card-text">Kano-Central Woman Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco20.jpg" class="card-img-top" alt="Alh. Ibrahim Girma Tsanyawa">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/20</h5>
+                    <p class="fw-bold">Alh. Ibrahim Girma Tsanyawa</p>
+                    <p class="card-text">Kano-North Chairman</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco21.jpg" class="card-img-top" alt="Sadiya Bichi">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/21</h5>
+                    <p class="fw-bold">Sadiya Bichi</p>
+                    <p class="card-text">Kano-North Woman Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco22.jpg" class="card-img-top" alt="Auwal Yunusa">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/22</h5>
+                    <p class="fw-bold">Auwal Yunusa</p>
+                    <p class="card-text">Kano-South Chairman</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco23.jpg" class="card-img-top" alt="Hafsat Abdul Yusuf">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/23</h5>
+                    <p class="fw-bold">Hafsat Abdul Yusuf</p>
+                    <p class="card-text">Kano-South Woman Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco24.jpg" class="card-img-top" alt="Bilkisu Abdullahi">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/24</h5>
+                    <p class="fw-bold">Bilkisu Abdullahi</p>
+                    <p class="card-text">TikTok Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco25.jpg" class="card-img-top" alt="Salma Usman Musa">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/25</h5>
+                    <p class="fw-bold">Salma Usman Musa</p>
+                    <p class="card-text">Deputy TikTok Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="images/exco26.jpg" class="card-img-top" alt="Hafsat Mansur Gwale">
+                <div class="card-body text-center">
+                    <h5 class="card-title">MASMO/KN/25/26</h5>
+                    <p class="fw-bold">Hafsat Mansur Gwale</p>
+                    <p class="card-text">Deputy Instagram Leader</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repeat for all other executives -->
+    </div>
+</section>
+
     <!-- Footer -->
     <footer class="footer text-center py-3">
         <p>Follow us on:</p>
