@@ -1,148 +1,208 @@
-       :root {
-            --apc-green: #45b7ec;
-            --apc-blue:  #00ddff;
-            --apc-red:#82aae6;
-            --apc-white: #FFFFFF;
-        }
-        .navbar {
-            background-color: var(--apc-green) !important;
-        }
-        .hero {
-            position: relative;
-            height: 65vh;
-            overflow: hidden;
-        }
-        .hero img {
+:root {
+    --apc-green: #45b7ec;
+    --apc-blue:  #00ddff;
+    --apc-red:#82aae6;
+    --apc-white: #FFFFFF;
+}
+.navbar {
+    background-color: var(--apc-green) !important;
+}
+.hero {
+    position: relative;
+    height: 65vh;
+    overflow: hidden;
+}
+.hero img {
+position: absolute;
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensures full coverage */
+opacity: 0;
+transition: opacity 1.5s ease-in-out;
+object-position: center 25%; /* Moves the image down slightly */
+}
+
+.hero img.active {
+    opacity: 1;
+}
+.hero-content {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures full coverage */
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    object-position: center 25%; /* Moves the image down slightly */
-}
-
-        .hero img.active {
-            opacity: 1;
-        }
-        .hero-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--apc-white);
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-        }
-        .hero-content h1 {
-            font-size: 2rem;
-        }
-        /* Ensure images are centered but not cropped from the top */
-img.rounded-circle {
-    width: 150px;  /* Set a fixed width for all images */
-    height: 150px;  /* Set a fixed height for all images */
-    object-fit: cover;  /* Ensure the images are cropped to fill the circle */
-    object-position: top;  /* Align the top of the image with the circle's top edge */
-    margin-bottom: 20px;  /* Add space below images */
-}
-
-        .navbar-brand {
-            font-family: 'Lobster', cursive;
-            font-size: 1.8rem;
-        }
-        .btn-primary {
-            background-color: var(--apc-blue);
-            border-color: var(--apc-blue);
-        }
-        .btn-primary:hover {
-            background-color: var(--apc-red);
-            border-color: var(--apc-red);
-        }
-        .footer {
-            background-color: var(--apc-green);
-            color: var(--apc-white);
-        }
-        .navbar-collapse {
-            text-align: center;
-        }
-        .navbar-toggler {
-            border: none;
-        }
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-        .navbar-brand {
     display: flex;
     align-items: center;
-    font-family: 'Poppins', sans-serif; /* Modern, clean font */
-    font-weight: bold;
-    font-size: 1.5rem; /* Adjust size as needed */
+    justify-content: center;
+    text-align: center;
+    color: var(--apc-white);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+}
+.hero-content h1 {
+    font-size: 2rem;
+}
+/* Ensure images are centered but not cropped from the top */
+img.rounded-circle {
+width: 150px;  /* Set a fixed width for all images */
+height: 150px;  /* Set a fixed height for all images */
+object-fit: cover;  /* Ensure the images are cropped to fill the circle */
+object-position: top;  /* Align the top of the image with the circle's top edge */
+margin-bottom: 20px;  /* Add space below images */
+}
+
+.navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 1.8rem;
+}
+.btn-primary {
+    background-color: var(--apc-blue);
+    border-color: var(--apc-blue);
+}
+.btn-primary:hover {
+    background-color: var(--apc-red);
+    border-color: var(--apc-red);
+}
+.footer {
+    background-color: var(--apc-green);
+    color: var(--apc-white);
+}
+.navbar-collapse {
+    text-align: center;
+}
+.navbar-toggler {
+    border: none;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+.navbar-brand {
+display: flex;
+align-items: center;
+font-family: 'Poppins', sans-serif; /* Modern, clean font */
+font-weight: bold;
+font-size: 1.5rem; /* Adjust size as needed */
 }
 
 .brand-logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover;
-    margin-right: 10px; /* Space between logo and text */
+width: 50px;
+height: 50px;
+border-radius: 50%; /* Makes the image circular */
+object-fit: cover;
+margin-right: 10px; /* Space between logo and text */
 }
 
 .brand-name {
-    color: #fff; /* Adjust based on navbar background */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Caveat', 'Poppins', 'Lobster', 'Pacifico';
-    font-size: 1.3rem; /* Adjust size as needed */
+color: #fff; /* Adjust based on navbar background */
+text-transform: uppercase;
+letter-spacing: 1px;
+font-family: 'Caveat', 'Poppins', 'Lobster', 'Pacifico';
+font-size: 1.3rem; /* Adjust size as needed */
 }
 .card-img-top {
-    width: 100px; /* Set a fixed width */
-    height: 100px; /* Set a fixed height */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures it covers the area without distortion */
-    object-position: top; /* Focuses on the upper part of the image */
-    display: block;
-    margin: 10px auto 0 auto; /* Adds top margin and centers the image */
+width: 100px; /* Set a fixed width */
+height: 100px; /* Set a fixed height */
+border-radius: 50%; /* Makes the image circular */
+object-fit: cover; /* Ensures it covers the area without distortion */
+object-position: top; /* Focuses on the upper part of the image */
+display: block;
+margin: 10px auto 0 auto; /* Adds top margin and centers the image */
 }
 .news-card {
-    transition: transform 0.3s ease-in-out;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+transition: transform 0.3s ease-in-out;
+border-radius: 10px;
+overflow: hidden;
+display: flex;
+flex-direction: column;
 }
 
 .news-card:hover {
-    transform: translateY(-5px);
+transform: translateY(-5px);
 }
 
 .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+text-align: center;
 }
 
 
-        .close-btn {
-            position: absolute;
-            top: 0%;
-            right: 15px;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: var(--apc-white);
+.close-btn {
+    position: absolute;
+    top: 0%;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: var(--apc-white);
+}
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 10px;
+    }
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+}
+     /* Ensure images cover the full width */
+     .news-img {
+        height: 500px; /* Adjust height as needed */
+        object-fit: cover;
+    }
+    
+    /* Custom fade-up animation */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
-        @media (max-width: 768px) {
-            .hero-content {
-                padding: 10px;
-            }
-            .hero-content h1 {
-                font-size: 1.5rem;
-            }
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
+    
+    /* Apply fade-up effect */
+    .fade-up {
+        animation: fadeUp 1s ease-in-out;
+    }
+    
+    /* Full overlay caption covering the entire container */
+    .full-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+        color: white;
+        padding: 20px;
+    }
+    @media (min-width: 992px) {  /* Targets large screens */
+        .news-img {
+            height: 400px; /* Reduce height for large screens */
+            object-fit: cover;
+        }
+        .carousel-caption {
+            font-size: 16px; /* Adjust text size for better balance */
+            padding: 15px;
+        }
+    }
+    
+    @media (max-width: 768px) { 
+        .news-img {
+            height: 250px; /* Adjust for smaller screens */
+            object-fit: cover;
+        }
+        .carousel-caption {
+            font-size: 14px; /* Reduce text size for better readability */
+            padding: 10px;
+        }
+    }
     
