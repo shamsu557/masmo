@@ -251,3 +251,13 @@ img.rounded-circle {
     #myBtn:hover {
     background-color:rgb(11, 160, 241);
     }
+    .center-container {
+        max-width: 500px; /* Fixed width for larger screens */
+        margin: auto;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background: white;
+        margin-top: 100px; /* Added margin-top */
+    }
+    
