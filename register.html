@@ -38,121 +38,186 @@
 </nav>
 <br>
 <br>
-<div class="center-container mt-5">
-        <h2 class="text-center">MASMO Registration Form</h2>
-        <form id="registrationForm">
-            <div class="row">
-                <div class="col-12 form-group">
-                    <label for="level">Select Level</label>
-                    <select class="form-control" id="level" name="level" required>
-                        <option value="">Choose...</option>
-                        <option value="state">State</option>
-                        <option value="lga">Local Government Area (LGA)</option>
-                        <option value="ward">Ward</option>
-                    </select>
-                </div>
+<div class="center-container mt-5" id="registrationSection">
+    <h2 class="text-center">MASMO Registration Form</h2>
+    <form id="registrationForm">
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="level">Select Level</label>
+                <select class="form-control" id="level" name="level" required>
+                    <option value="">Choose...</option>
+                    <option value="state">State</option>
+                    <option value="lga">Local Government Area (LGA)</option>
+                    <option value="ward">Ward</option>
+                </select>
             </div>
-            <div class="row">
-                <div class="col-md-6 form-group" id="lgaGroup" style="display: none;">
-                            <label for="lga">Select LGA</label>
-                            <select class="form-control" id="lga" name="lga">
-                                <option value="">Choose...</option>
-                                <option value="AJI">Ajingi (AJI)</option>
-                                <option value="ALB">Albasu (ALB)</option>
-                                <option value="BGW">Bagwai (BGW)</option>
-                                <option value="BBJ">Bebeji (BBJ)</option>
-                                <option value="BIC">Bichi (BIC)</option>
-                                <option value="BNK">Bunkure (BNK)</option>
-                                <option value="DAL">Dala (DAL)</option>
-                                <option value="DBT">Dambatta (DBT)</option>
-                                <option value="DKD">Dawakin Kudu (DKD)</option>
-                                <option value="DKT">Dawakin Tofa (DKT)</option>
-                                <option value="DOG">Doguwa (DOG)</option>
-                                <option value="FGE">Fagge (FGE)</option>
-                                <option value="GBS">Gabasawa (GBS)</option>
-                                <option value="GRK">Garko (GRK)</option>
-                                <option value="GML">Garun Mallam (GML)</option>
-                                <option value="GAY">Gaya (GAY)</option>
-                                <option value="GZW">Gezawa (GZW)</option>
-                                <option value="GWL">Gwale (GWL)</option>
-                                <option value="GWR">Gwarzo (GWR)</option>
-                                <option value="KAB">Kabo (KAB)</option>
-                                <option value="KAR">Karaye (KAR)</option>
-                                <option value="KBY">Kibiya (KBY)</option>
-                                <option value="KMC">Kano Municipal (KMC)</option>
-                                <option value="KIR">Kiru (KIR)</option>
-                                <option value="KBS">Kumbotso (KBS)</option>
-                                <option value="KCH">Kunchi (KCH)</option>
-                                <option value="KUR">Kura (KUR)</option>
-                                <option value="MDB">Madobi (MDB)</option>
-                                <option value="MKD">Makoda (MKD)</option>
-                                <option value="MJB">Minjibir (MJB)</option>
-                                <option value="NSR">Nasarawa (NSR)</option>
-                                <option value="RAN">Rano (RAN)</option>
-                                <option value="RMD">Rimin Gado (RMD)</option>
-                                <option value="ROG">Rogo (ROG)</option>
-                                <option value="SHN">Shanono (SHN)</option>
-                                <option value="SML">Sumaila (SML)</option>
-                                <option value="TKI">Takai (TKI)</option>
-                                <option value="TRN">Tarauni (TRN)</option>
-                                <option value="TFA">Tofa (TFA)</option>
-                                <option value="TSW">Tsanyawa (TSW)</option>
-                                <option value="TDW">Tudun Wada (TDW)</option>
-                                <option value="UNG">Ungogo (UNG)</option>
-                                <option value="WRW">Warawa (WRW)</option>
-                                <option value="WDL">Wudil (WDL)</option>
-                            </select>                    
-                </div>
-                <div class="col-md-6 form-group" id="wardRow" style="display: none;">
-                    <label for="ward">Select Ward</label>
-                    <select class="form-control" id="ward" name="ward">
-                        <option value="">Choose...</option>
-                    </select>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group" id="lgaGroup" style="display: none;">
+                <label for="lga">Select LGA</label>
+                <select class="form-control" id="lga" name="lga">
+                    <option value="">Choose...</option>
+                    <option value="AJI">Ajingi (AJI)</option>
+                    <option value="ALB">Albasu (ALB)</option>
+                    <option value="BGW">Bagwai (BGW)</option>
+                    <option value="BBJ">Bebeji (BBJ)</option>
+                    <option value="BIC">Bichi (BIC)</option>
+                    <option value="BNK">Bunkure (BNK)</option>
+                    <option value="DAL">Dala (DAL)</option>
+                    <option value="DBT">Dambatta (DBT)</option>
+                    <option value="DKD">Dawakin Kudu (DKD)</option>
+                    <option value="DKT">Dawakin Tofa (DKT)</option>
+                    <option value="DOG">Doguwa (DOG)</option>
+                    <option value="FGE">Fagge (FGE)</option>
+                    <option value="GBS">Gabasawa (GBS)</option>
+                    <option value="GRK">Garko (GRK)</option>
+                    <option value="GML">Garun Mallam (GML)</option>
+                    <option value="GAY">Gaya (GAY)</option>
+                    <option value="GZW">Gezawa (GZW)</option>
+                    <option value="GWL">Gwale (GWL)</option>
+                    <option value="GWR">Gwarzo (GWR)</option>
+                    <option value="KAB">Kabo (KAB)</option>
+                    <option value="KAR">Karaye (KAR)</option>
+                    <option value="KBY">Kibiya (KBY)</option>
+                    <option value="KMC">Kano Municipal (KMC)</option>
+                    <option value="KIR">Kiru (KIR)</option>
+                    <option value="KBS">Kumbotso (KBS)</option>
+                    <option value="KCH">Kunchi (KCH)</option>
+                    <option value="KUR">Kura (KUR)</option>
+                    <option value="MDB">Madobi (MDB)</option>
+                    <option value="MKD">Makoda (MKD)</option>
+                    <option value="MJB">Minjibir (MJB)</option>
+                    <option value="NSR">Nasarawa (NSR)</option>
+                    <option value="RAN">Rano (RAN)</option>
+                    <option value="RMD">Rimin Gado (RMD)</option>
+                    <option value="ROG">Rogo (ROG)</option>
+                    <option value="SHN">Shanono (SHN)</option>
+                    <option value="SML">Sumaila (SML)</option>
+                    <option value="TKI">Takai (TKI)</option>
+                    <option value="TRN">Tarauni (TRN)</option>
+                    <option value="TFA">Tofa (TFA)</option>
+                    <option value="TSW">Tsanyawa (TSW)</option>
+                    <option value="TDW">Tudun Wada (TDW)</option>
+                    <option value="UNG">Ungogo (UNG)</option>
+                    <option value="WRW">Warawa (WRW)</option>
+                    <option value="WDL">Wudil (WDL)</option>
+                </select>
             </div>
-    
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="rank">Select Rank</label>
-                    <select class="form-control" id="rank" name="rank" required>
-                        <option value="">Choose...</option>
-                    </select>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="membershipNumber">Membership Number</label>
-                    <input type="text" class="form-control" id="membershipNumber" name="membershipNumber" readonly>
-                </div>
+            <div class="col-md-6 form-group" id="wardRow" style="display: none;">
+                <label for="ward">Select Ward</label>
+                <select class="form-control" id="ward" name="ward">
+                    <option value="">Choose...</option>
+                </select>
             </div>
-    
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" required>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="rank">Select Rank</label>
+                <select class="form-control" id="rank" name="rank" required>
+                    <option value="">Choose...</option>
+                </select>
             </div>
-    
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="email">Email Address (Optional)</label>
-                    <input type="email" class="form-control" id="email" name="email">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="address">Contact Address</label>
-                    <input type="text" class="form-control" id="address" name="address" required>
-                </div>
+            <div class="col-md-6 form-group">
+                <label for="membershipNumber">Membership Number</label>
+                <input type="text" class="form-control" id="membershipNumber" name="membershipNumber" readonly>
             </div>
-    
-            <div class="text-center mt-3">
-                <button type="submit" class="btn btn-primary w-25">Register</button>
+        </div>
+        <div class="text-center mt-3">
+            <button type="button" id="proceedBtn" class="btn btn-primary w-25">Proceed</button>
+        </div>
+    </form>
+</div><div class="center-container mt-5" id="confirmationSection" style="display: none;">
+    <h2 class="text-center">Confirm Your Details</h2>
+    <form id="confirmationForm">
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="generatedNumber">Membership Number</label>
+                <input type="text" class="form-control" id="generatedNumber" name="generatedNumber" readonly>
             </div>
-        </form>
-    </div>
-    
+            <div class="col-md-6 form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="">Choose...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="picture">Upload Picture</label>
+                <input type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="email">Email (Optional)</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="zone">Zone</label>
+                <select class="form-control" id="zone" name="zone" required>
+                    <option value="">Choose...</option>
+                    <option value="Kano Central">Kano Central</option>
+                    <option value="Kano North">Kano North</option>
+                    <option value="Kano South">Kano South</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="local_government">Local Government</label>
+                <select class="form-control" id="local_government" name="local_government" required>
+                    <option value="">Choose...</option>
+                </select>
+            </div>
+        
+            <div class="col-md-6 form-group">
+                <label for="ward">Ward</label>
+                <select class="form-control" id="zoneWard" name="ward" required>
+                    <option value="">Choose...</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="pollingUnit">Polling Unit</label>
+                <select class="form-control" id="pollingUnit" name="pollingUnit" required>
+                    <option value="" disabled selected>Choose Polling Unit</option>
+                    <!-- Polling unit options will be dynamically generated here -->
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+    
    <!-- Footer -->
     <footer class="footer bg-info text-dark mt-3 py-3">
         <div class="container">

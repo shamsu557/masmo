@@ -33,6 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.getElementById("proceedBtn").addEventListener("click", function() {
+    document.getElementById("registrationSection").style.display = "none";  // Hide registration
+    document.getElementById("confirmationSection").style.display = "block"; // Show confirmation
+    document.getElementById("generatedNumber").value = document.getElementById("membershipNumber").value; // Copy membership number
+    document.getElementById("confirmLGA").value = document.getElementById("lga").value; // Copy LGA
+    document.getElementById("confirmWard").value = document.getElementById("ward").value; // Copy Ward
+});
+
 const wardsByLGA = {
     'ALB': {
 'ALC': 'Albasu Central',
@@ -728,6 +737,641 @@ $(document).ready(function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Zone change event
+    document.getElementById('zone').addEventListener('change', function() {
+        var zone = this.value;
+        var localGovernmentSelect = document.getElementById('local_government');
+        
+        // Clear existing options in both Local Government and Ward dropdowns
+        localGovernmentSelect.innerHTML = '<option value="">Choose...</option>';
+        document.getElementById('zoneWard').innerHTML = '<option value="">Choose...</option>';
+        
+        // Define Local Governments for each zone
+        var localGovernmentsByZone = {
+            "Kano Central": [
+                "Dala", "Gwale", "Dawakin Kudu", "Kura", "Gezawa", "Tarauni", 
+                "Fagge", "KMC", "Gar. Mallam", "Kumbotso", "Madobi", "Minjibir", 
+                "Nassarawa", "Ungogo", "Warawa"
+            ],
+            "Kano North": [
+                "Bichi", "Shanono Bagwai", "Danbatta", "Makoda", "Dawakin Tofa", 
+                "Gabasawa", "Gwarzo", "Kabo", "Tofa", "Rimin Gado", "Tsanyawa", "Kunchi"
+            ],
+            "Kano South": [
+                "Ajingi", "Albasu", "Bebeji", "Bunkure", "Doguwa", "Garko", "Gaya", 
+                "Karaye", "Kibiya", "Kiru", "Rano", "Rogo", "Sumaila", "Takai", 
+                "Tudun Wada", "Wudil"
+            ]
+        };
+
+        // Populate Local Government dropdown based on selected zone
+        if (localGovernmentsByZone[zone]) {
+            localGovernmentsByZone[zone].forEach(function(localGovernment) {
+                var option = document.createElement('option');
+                option.value = localGovernment;
+                option.textContent = localGovernment;
+                localGovernmentSelect.appendChild(option);
+            });
+        }
+    });
+
+    // Local Government change event
+    document.getElementById('local_government').addEventListener('change', function() {
+        var localGovernment = this.value;
+        var wardSelect = document.getElementById('zoneWard');  // Updated ID
+        
+        // Clear existing options in the Ward dropdown
+        wardSelect.innerHTML = '<option value="">Choose...</option>';
+
+       // Define Wards for each Local Government
+var wardsForLocalGovernment = {
+    "Albasu": [
+        "Albasu Central",
+        "Bataiya",
+        "Chamarana",
+        "Daho",
+        "Fanda",
+        "Faragai",
+        "Gagarame",
+        "Hungu",
+        "Saya-Saya",
+        "Tsangaya"
+    ],
+    "Bagwai": [
+        "Bagwai",
+        "Dangada",
+        "Gadanya",
+        "Gogori",
+        "Kiyawa",
+        "Kwajali",
+        "Rimin Dako",
+        "Romo",
+        "Sare-Sare",
+        "Wuro Bagga"
+    ],
+    "Bebeji": [
+        "Anadariya",
+        "Baguda",
+        "Bebeji",
+        "Damau",
+        "Durmawa",
+        "Gargai",
+        "Gwarmai",
+        "Kofa",
+        "Kuki",
+        "Rahama",
+        "Ranka",
+        "Rantan",
+        "Tariwa",
+        "Wak"
+    ],
+    "Bichi": [
+        "Badume",
+        "Bichi",
+        "Danzabuwa",
+        "Fagwalawa",
+        "Kaukau",
+        "Kwamarawa",
+        "Kyalli",
+        "Muntsira",
+        "Saye",
+        "Waire",
+        "Yallami"
+    ],
+    "Bunkure": [
+        "Barkum",
+        "Bono",
+        "Chirin",
+        "Gafan",
+        "Gurjiya",
+        "Gwamma",
+        "Kulluwa",
+        "Kumurya",
+        "Sanda"
+    ],
+    "Dala": [
+        "Adakawa",
+        "Bakin Ruwa",
+        "Dala",
+        "Dogon Nama",
+        "Gobirawa",
+        "Gwammaja",
+        "Kabuwaya",
+        "Kantudu",
+        "Kofar Mazugal",
+        "Kofar Ruwa",
+        "Madigawa",
+        "Yalwa"
+    ],
+    "Dambatta": [
+        "Ajumawa",
+        "Danbatta East",
+        "Danbatta West",
+        "Fagwalawa",
+        "Goron Maje",
+        "Gwanda",
+        "Gwarabjawa",
+        "Kore",
+        "Saidawa",
+        "Sansan"
+    ],
+
+     "Dawakin Kudu": [
+        "Dabar Kwari",
+        "Danbagiwa",
+        "Dawaki",
+        "Dawakiji",
+        "Dosan",
+        "Fajewa",
+        "Gano",
+        "Goron Tudu",
+        "Kademi",
+        "Tamburawa",
+        "Tsakuwa",
+        "Unguwar Dabai",
+        "Unguwar Gano",
+        "Yankatsari",
+        "Yargaya"
+    ],
+    "Dawakin Tofa": [
+        "Dan Guguwa",
+        "Dawaki East",
+        "Dawaki West",
+        "Dawannau",
+        "Ganduje",
+        "Gargari",
+        "Jalli",
+        "Kwa",
+        "Marke",
+        "Tattarawa",
+        "Tumfafi"
+    ],
+    "Doguwa": [
+        "Dariya",
+        "Dogon Kawo",
+        "Duguwa",
+        "Falgore",
+        "Maraku",
+        "Ragada",
+        "Rirawai",
+        "Tagwaye",
+        "Unguwar Natsohuwa",
+        "Zainabi"
+    ],
+    "Fagge": [
+        "Fagge A",
+        "Fagge B",
+        "Fagge C",
+        "Fagge D",
+        "Fagge E",
+        "Kwachiri",
+        "Rijiyar Lemo",
+        "Sabongari East",
+        "Sabongari West",
+        "Yammata"
+    ],
+    "Gabasawa": [
+        "Gabasawa",
+        "Garun Danga",
+        "Joda",
+        "Karmaki",
+        "Mekiya",
+        "Tarauni",
+        "Yantar Arewwa",
+        "Yautar Kudu",
+        "Yumbu",
+        "Zakirai",
+        "Zugachi"
+    ],
+    "Garko": [
+        "Dal",
+        "Garin Ali",
+        "Garko",
+        "Gurjiya",
+        "Kafin Malamai",
+        "Katumari",
+        "Kwas",
+        "Raba",
+        "Sarina",
+        "Zakarawa"
+    ],
+    "Garun Mallam": [
+        "Chiromawa",
+        "Dorawar-Sallau",
+        "Fankurun",
+        "Garun Babba",
+        "Garun Malam",
+        "Jobawa",
+        "Kadawa",
+        "Makwarro",
+        "Yad Akwari",
+        "Yalwan Yadakwari"
+    ],
+
+     "Gaya": [
+        "Balan",
+        "Gamarya",
+        "Gamoji",
+        "Gaya Arewa",
+        "Gaya Kudu",
+        "Kademi",
+        "Kazurawa",
+        "Maimakawa",
+        "Shagogo",
+        "Wudilawa"
+    ],
+    "Gezawa": [
+        "Babawa",
+        "Gawo",
+        "Gezawa",
+        "Jogana",
+        "Ketawa",
+        "Mesar-Tudu",
+        "Sararin-Gezawa",
+        "Tsamiya-Babba",
+        "Tumbau",
+        "Wangara",
+        "Zango"
+    ],
+    "Gwale": [
+        "Dandago",
+        "Diso",
+        "Dorayi",
+        "Galadanchi",
+        "Goron Dutse",
+        "Gwale",
+        "Gyaranya",
+        "Kabuga",
+        "Mandawari",
+        "Sani Mai Magge"
+    ],
+    "Gwarzo": [
+        "Getso",
+        "Gwarzo",
+        "Jama’a",
+        "Kara",
+        "Kutama",
+        "Lakwaya",
+        "Madadi",
+        "Mainika",
+        "Sabon Birni",
+        "Unguwar Tudu"
+    ],
+    "Kabo": [
+        "Dugabau",
+        "Durun",
+        "Gammo",
+        "Garo",
+        "Godiya",
+        "Gude",
+        "Hauwade",
+        "Kabo",
+        "Kanwa",
+        "Masanawa"
+    ],
+    "Kano Municipal": [
+        "Chedi",
+        "Dan’Agundi",
+        "Gandun Albasa",
+        "Jakara",
+        "Kankarofi",
+        "Shahuchi",
+        "Sharada",
+        "Sheshe",
+        "Tudun Nufawa",
+        "Tudun Wazirchi",
+        "Yakasai",
+        "Zaitawa",
+        "Zango"
+    ],
+    "Karaye": [
+        "Daura",
+        "Kafin Dafga",
+        "Karaye",
+        "Kurugu",
+        "Kwanyawa",
+        "Tudun Kaya",
+        "Turawa",
+        "Unguwar Hajji",
+        "Yammedi",
+        "Yola"
+    ],
+    "Kibiya": [
+        "Durba",
+        "Fammar",
+        "Fassi",
+        "Kadigawa",
+        "Kahu",
+        "Kibiya I",
+        "Kibiya II",
+        "Nariya",
+        "Tarai",
+        "Unguwar Gai"
+    ],
+    "Kiru": [
+        "Ba’awa",
+        "Badafi",
+        "Bargoni",
+        "Bauda",
+        "Dangora",
+        "Dansohiya",
+        "Dashi",
+        "Galadimawa",
+        "Kiru",
+        "Kogo",
+        "Maraku",
+        "Tsaudawa",
+        "Yako",
+        "Yalwa",
+        "Zuwo"
+    ],
+    "Kumbotso": [
+        "Challawa",
+        "Chiranchi",
+        "Danbare",
+        "Danmaliki",
+        "Guringawa",
+        "Kumbotso",
+        "Kureken Sani",
+        "Mariri",
+        "Na’ibawa",
+        "Panshekara",
+        "Unguwar Rimi"
+    ],
+    "Kunchi": [
+        "Bumai",
+        "Garin Sheme",
+        "Gwarmai",
+        "Kasuwar Kuka",
+        "Kunchi",
+        "Matan Fada",
+        "Ridawa",
+        "Shamakawa",
+        "Shuwaki",
+        "Yandadi"
+    ],
+    "Kura": [
+        "Dalili",
+        "Dan Hassan",
+        "Dukawa",
+        "Gundutse",
+        "Karfi",
+        "Kosawa",
+        "Kura",
+        "Kurunsumau",
+        "Rigar Duka",
+        "Tanawa"
+    ],
+    "Madobi": [
+        "Burji",
+        "Cinkoso",
+        "Galinja",
+        "Gora",
+        "Kafin Agur",
+        "Kanwa",
+        "Kaura Mata",
+        "Kubaraci",
+        "Kwankwaso",
+        "Madobi",
+        "Rikadawa"
+    ],
+    "Makoda": [
+        "Babbar Riga",
+        "Durma",
+        "Jibga",
+        "Kadandani",
+        "Koguna",
+        "Koren Tatso",
+        "Maitsidau",
+        "Makoda",
+        "Satame",
+        "Tangaji",
+        "Wailare"
+    ],
+    "Minjibir": [
+        "Azore",
+        "Gandurwawa",
+        "Kantama",
+        "Kunya",
+        "Kuru",
+        "Kwarkiya",
+        "Minjibir",
+        "Sarbi",
+        "Tsakiya",
+        "Tsakuwa",
+        "Wasai"
+    ],
+    "Nassarawa": [
+        "Dakata",
+        "Gama",
+        "Gawuna",
+        "Giginyu",
+        "Gwagwarwa",
+        "Hotoro North",
+        "Hotoro South",
+        "Kaura Goje",
+        "Kawaji",
+        "Tudun Murtala",
+        "Tudun Wada"
+    ],
+    "Rano": [
+        "Dawaki",
+        "Lausu",
+        "Madachi",
+        "Rano",
+        "Rurum Sabon-Gari",
+        "Rurum Tsohon-Gari",
+        "Saji",
+        "Yalwa",
+        "Zinyau",
+        "Zurgu"
+    ],
+    "Rimin Gado": [
+        "Butu-Butu",
+        "Dawaki Gulu",
+        "Doka Dawa",
+        "Dugurawa",
+        "Gulu",
+        "Jili",
+        "Karofin Yashi",
+        "Rimin Gado",
+        "Sakaratsa",
+        "Tamawa",
+        "Yalwan Danziyal",
+        "Zango Dan Abdu"
+    ],
+    "Rogo": [
+        "Beli",
+        "Falgore",
+        "Fulatan",
+        "Gwangwan",
+        "Jajaye",
+        "Rogo Ruma",
+        "Rogo Sabon Gari",
+        "Ruwan Bago",
+        "Zarewa",
+        "Zoza"
+    ],
+    "Shanono": [
+        "Alajawa",
+        "Dutsen-Bakoshi",
+        "Faruruwa",
+        "Goron Dutse",
+        "Kadamu",
+        "Kokiya",
+        "Leni",
+        "Shakogi",
+        "Shanono",
+        "Tsaure"
+    ],
+    "Sumaila": [
+        "Gala",
+        "Gani",
+        "Garfa",
+        "Gediya",
+        "Kanawa",
+        "Magami",
+        "Masu",
+        "Rimi",
+        "Rumo",
+        "Sitti",
+        "Sumaila"
+    ],
+    "Takai": [
+        "Bagwaro",
+        "Durbunde",
+        "Fajewa",
+        "Falali",
+        "Faruruwa",
+        "Kachako",
+        "Karfi",
+        "Kuka",
+        "Takai",
+        "Zuga"
+    ],
+    "Tarauni": [
+        "Babban Giji",
+        "Darmnanawa",
+        "Daurawa",
+        "Gyadi-Gyadi Arewa",
+        "Gyadi-Gyadi Kudu",
+        "Hotoro (NNPC)",
+        "Kauyen Alu",
+        "Tarauni",
+        "Unguwa Uku",
+        "Unguwar Gano"
+    ],
+    "Tofa": [
+        "Dindere",
+        "Doka",
+        "Gajida",
+        "Ginsawa",
+        "Janguza",
+        "Jauben Kudu",
+        "Kwami",
+        "Lambu",
+        "Langel",
+        "Tofa",
+        "Unguwar Rimi",
+        "Wangara",
+        "Yalwa Karama",
+        "Yanoko",
+        "Yarimawa",
+        "Tsanyawa"
+    ],
+    "Tsanyawa": [
+        "Daddarawa",
+        "Dunbulun",
+        "Gozaki",
+        "Gurun",
+        "Kabagiwa",
+        "Tatsan",
+        "Tsanyawa",
+        "Yanganau",
+        "Yankamaye",
+        "Zarogi"
+    ],
+    "Tudun Wada": [
+        "Baburi",
+        "Burumburum",
+        "Dalawa",
+        "Jandutse",
+        "Jita",
+        "Karefa",
+        "Nata'ala",
+        "Sabon Gari",
+        "Shuwaki",
+        "Tsohogari"
+    ],
+    "Ungogo": [
+        "Bachirawa",
+        "Gayawa",
+        "Kadawa",
+        "Karo",
+        "Panisau",
+        "Rangaza",
+        "Rijiyar Zaki",
+        "Tudun Fulani",
+        "Ungogo",
+        "Yadakunya",
+        "Zango"
+    ],
+    "Warawa": [
+        "Amarawa",
+        "Danlasan",
+        "Garin Dau",
+        "Gogel",
+        "Imawa",
+        "J/Galadima",
+        "Jemagu",
+        "Jigawa",
+        "Katarkawa",
+        "Madari Mata",
+        "Tamburawar Gabas",
+        "Tangar",
+        "Warawa",
+        "Yan Dalla",
+        "Yangizo"
+    ],
+    "Wudil": [
+        "Achika",
+        "Dagumawa",
+        "Dankaza",
+        "Darki",
+        "Indabo",
+        "Kausani",
+        "Lajawa",
+        "Sabon Gari",
+        "Utai",
+        "Wudil"
+    ]
+};
+        // Populate the Ward dropdown based on selected Local Government
+        if (wardsForLocalGovernment[localGovernment]) {
+            wardsForLocalGovernment[localGovernment].forEach(function(ward) {
+                var option = document.createElement('option');
+                option.value = ward;
+                option.textContent = ward;
+                wardSelect.appendChild(option);
+            });
+        } else {
+            // If no wards exist for the selected local government, reset the ward dropdown
+            wardSelect.innerHTML = '<option value="">No wards available</option>';
+        }
+    });
+
+});
+
+// Generate options for Polling Unit from 001 to 100
+const pollingUnitSelect = document.getElementById('pollingUnit');
+for (let i = 1; i <= 100; i++) {
+    let option = document.createElement('option');
+    option.value = i.toString().padStart(3, '0'); // Pad numbers to be 3 digits (e.g., 001, 002)
+    option.textContent = option.value;
+    pollingUnitSelect.appendChild(option);
+}
 // Back to top button functionality
 window.onscroll = function () {
     scrollFunction();
