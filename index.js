@@ -34,13 +34,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.getElementById("proceedBtn").addEventListener("click", function() {
-    document.getElementById("registrationSection").style.display = "none";  // Hide registration
-    document.getElementById("confirmationSection").style.display = "block"; // Show confirmation
-    document.getElementById("generatedNumber").value = document.getElementById("membershipNumber").value; // Copy membership number
-    document.getElementById("confirmLGA").value = document.getElementById("lga").value; // Copy LGA
-    document.getElementById("confirmWard").value = document.getElementById("ward").value; // Copy Ward
+document.addEventListener("DOMContentLoaded", function () {
+    const membershipNumberInput = document.getElementById("membershipNumber");
+    const proceedBtn = document.getElementById("proceedBtn");
+
+    // Proceed button click event
+    proceedBtn.addEventListener("click", function () {
+        if (membershipNumberInput.value.trim() === "") {
+            alert("Please generate your Membership Number before proceeding.");
+        } else {
+            document.getElementById("registrationSection").style.display = "none";  
+            document.getElementById("confirmationSection").style.display = "block"; 
+            document.getElementById("generatedNumber").value = membershipNumberInput.value;
+        }
+    });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const membershipNumberInput = document.getElementById("membershipNumber");
+    const proceedBtn = document.getElementById("proceedBtn");
+
+    // Proceed button click event
+    proceedBtn.addEventListener("click", function () {
+        if (membershipNumberInput.value.trim() === "") {
+            alert("Please generate your Membership Number before proceeding.");
+        } else {
+            document.getElementById("registrationSection").style.display = "none";  
+            document.getElementById("confirmationSection").style.display = "block"; 
+            document.getElementById("generatedNumber").value = membershipNumberInput.value;
+        }
+    });
+});
+
+
 
 const wardsByLGA = {
     'ALB': {
