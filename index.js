@@ -1,13 +1,13 @@
 let images = document.querySelectorAll('.hero img');
-let index = 0;
+    let index = 0;
 
-function changeImage() {
-    images[index].classList.remove('active');
-    index = (index + 1) % images.length;
-    images[index].classList.add('active');
-}
+    function changeImage() {
+        images[index].classList.remove('active');
+        index = (index + 1) % images.length;
+        images[index].classList.add('active');
+    }
 
-setInterval(changeImage, 5000);
+    setInterval(changeImage, 5000);
 
 document.addEventListener("DOMContentLoaded", function () {
     const navToggle = document.getElementById("navToggle");
@@ -33,38 +33,43 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
 document.addEventListener("DOMContentLoaded", function () {
     const membershipNumberInput = document.getElementById("membershipNumber");
     const proceedBtn = document.getElementById("proceedBtn");
+    const levelSelect = document.getElementById("level"); // Level dropdown
+
+    const generatedNumberInput = document.getElementById("generatedNumber");
+    const confirmationRankInput = document.getElementById("confirmationRank"); // Rank in confirmation section
+
+    // Function to get rank based on level and key
+    function getAssignedRank(level, key) {
+        return ranks[level] && ranks[level][key] ? ranks[level][key] : "Unknown Rank";
+    }
 
     // Proceed button click event
     proceedBtn.addEventListener("click", function () {
-        if (membershipNumberInput.value.trim() === "") {
+        const selectedLevel = levelSelect.value; // Get selected level (state, lga, ward)
+        const membershipNumber = membershipNumberInput.value.trim();
+
+        if (membershipNumber === "") {
             alert("Please generate your Membership Number before proceeding.");
         } else {
-            document.getElementById("registrationSection").style.display = "none";  
-            document.getElementById("confirmationSection").style.display = "block"; 
-            document.getElementById("generatedNumber").value = membershipNumberInput.value;
+            // Extract the last two digits as the rank key
+            const selectedRankKey = membershipNumber.slice(-2); 
+
+            // Get the assigned rank
+            const assignedRank = getAssignedRank(selectedLevel, selectedRankKey);
+
+            // Hide registration section & show confirmation
+            document.getElementById("registrationSection").style.display = "none";
+            document.getElementById("confirmationSection").style.display = "block";
+
+            // Transfer Membership Number & Rank
+            generatedNumberInput.value = membershipNumber;
+            confirmationRankInput.value = assignedRank;
         }
     });
 });
-document.addEventListener("DOMContentLoaded", function () {
-    const membershipNumberInput = document.getElementById("membershipNumber");
-    const proceedBtn = document.getElementById("proceedBtn");
-
-    // Proceed button click event
-    proceedBtn.addEventListener("click", function () {
-        if (membershipNumberInput.value.trim() === "") {
-            alert("Please generate your Membership Number before proceeding.");
-        } else {
-            document.getElementById("registrationSection").style.display = "none";  
-            document.getElementById("confirmationSection").style.display = "block"; 
-            document.getElementById("generatedNumber").value = membershipNumberInput.value;
-        }
-    });
-});
-
 
 
 const wardsByLGA = {
@@ -1397,6 +1402,45 @@ for (let i = 1; i <= 100; i++) {
     option.textContent = option.value;
     pollingUnitSelect.appendChild(option);
 }
+
+document.getElementById("confirmationForm").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    let formData = new FormData(this); // Capture form data, including file uploads
+
+    try {
+        let response = await fetch("http://localhost:3000/register", {
+            method: "POST",
+            body: formData
+        });
+
+        let result = await response.json();
+
+        if (result.success) {
+            // Show acknowledgment
+            document.getElementById("confirmationSection").innerHTML = `
+                <div class="text-center">
+                    <img src="Masmo.jpg" alt="MASMO Logo" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                </div>
+                <h2 class="text-center">Registration Successful</h2>
+                <p class="text-center">Welcome, <strong>${result.data.fullName}</strong>!</p>
+                <p class="text-center">LGA: <strong>${result.data.local_government}</strong></p>
+                <p class="text-center">Rank: <strong>${result.data.rank}</strong></p>
+                <p class="text-center">Ward: <strong>${result.data.ward}</strong></p>
+                <p class="text-center">Membership Number: <strong>${result.data.membershipNumber}</strong></p>
+                <div class="text-center">
+                    <img src="${result.data.imagePath}" alt="Your Picture" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                </div>
+            `;
+        } else {
+            alert("Registration failed: " + result.message);
+        }
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("An error occurred. Please try again.");
+    }
+});
+
 // Back to top button functionality
 window.onscroll = function () {
     scrollFunction();

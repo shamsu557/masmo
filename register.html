@@ -130,7 +130,8 @@
             <button type="button" id="proceedBtn" class="btn btn-primary w-25">Proceed</button>
         </div>
     </form>
-</div><div class="center-container mt-5" id="confirmationSection" style="display: none; background-color: #f0f8ff; padding: 30px;">
+</div>
+<div class="center-container mt-5" id="confirmationSection" style="display: none; background-color: #f0f8ff; padding: 30px;">
     <!-- MASMO Logo (circular) at the top center -->
     <div class="text-center">
         <img src="Masmo.jpg" alt="MASMO Logo" class="rounded-circle" style="width: 70px; height: 70px; object-fit: cover;">
@@ -143,16 +144,23 @@
                 <input type="text" class="form-control" id="generatedNumber" name="generatedNumber" readonly>
             </div>
             <div class="col-md-6 form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" id="fullName" name="fullName" required>
+                <label for="confirmationRank">Rank</label>
+                <input type="text" class="form-control" id="confirmationRank" name="confirmationRank" readonly>
             </div>
-        </div>
+            
         
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="dateOfBirth">Date of Birth</label>
                 <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
             </div>
+            <div class="col-md-6 form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-6 form-group">
                 <label for="gender">Gender</label>
                 <select class="form-control" id="gender" name="gender" required>
@@ -162,19 +170,11 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label for="picture">Upload Picture</label>
-                <input type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
-            </div>
             <div class="col-md-6 form-group">
                 <label for="phoneNumber">Phone Number</label>
                 <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-6 form-group">
                 <label for="email">Email (Optional)</label>
@@ -214,6 +214,10 @@
                     <option value="" disabled selected>Choose Polling Unit</option>
                     <!-- Polling unit options will be dynamically generated here -->
                 </select>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="picture">Upload Picture</label>
+                <input type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
             </div>
         </div>
 
