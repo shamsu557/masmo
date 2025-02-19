@@ -1407,7 +1407,7 @@ document.getElementById("confirmationForm").addEventListener("submit", async fun
     
     let formData = new FormData(this);
     try {
-        let response = await fetch("http://localhost:3000/register", { method: "POST", body: formData });
+        let response = await fetch("https://masmo-1.onrender.com/register", { method: "POST", body: formData });
         let result = await response.json();
         
         if (result.success) {
@@ -1433,7 +1433,7 @@ document.getElementById("confirmationForm").addEventListener("submit", async fun
 });
 function downloadAcknowledgment(membershipNumber) {
     const encodedNumber = encodeURIComponent(membershipNumber); // Encode special characters
-    window.location.href = `http://localhost:3000/download/${encodedNumber}`;
+    window.location.href = `https://masmo-1.onrender.com/download/${encodedNumber}`;
 }
 
 
