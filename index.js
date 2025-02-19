@@ -652,12 +652,12 @@ const ranks = {
 '15': 'State Deputy Welfare Director',
 '16': 'State Treasurer',
 '17': 'State Auditor',
-'18': 'State Kano-Central Chairman',
-'19': 'State Kano-Central Woman Leader',
-'20': 'State Kano-North Chairman',
-'21': 'State Kano-North Woman Leader',
-'22': 'State Kano-South Chairman',
-'23': 'State Kano-South Woman Leader',
+'18': 'Kano-Central Chairman',
+'19': 'Kano-Central Woman Leader',
+'20': 'Kano-North Chairman',
+'21': 'Kano-North Woman Leader',
+'22': 'Kano-South Chairman',
+'23': 'Kano-South Woman Leader',
 '24': 'State TikTok Leader',
 '25': 'State Deputy TikTok Leader',
 '26': 'State Deputy Instagram Leader'
@@ -987,7 +987,7 @@ var wardsForLocalGovernment = {
         "Sarina",
         "Zakarawa"
     ],
-    "Garun Mallam": [
+    "Gar. Mallam": [
         "Chiromawa",
         "Dorawar-Sallau",
         "Fankurun",
@@ -1441,6 +1441,24 @@ document.getElementById("confirmationForm").addEventListener("submit", async fun
     }
 });
 
+// Function to validate file size
+function validateFileSize(fileInput) {
+    const file = fileInput.files[0];
+    const maxSize = 80 * 1024; // 80KB in bytes
+  
+    if (file && file.size > maxSize) {
+        alert('File size exceeds the 80KB limit. Please choose a smaller file.');
+        fileInput.value = ''; // Clear the input
+        return false;
+    }
+    return true;
+  }
+  
+  // Add event listener to the picture input
+  document.getElementById('picture').addEventListener('change', function () {
+    validateFileSize(this);
+  });
+  
 // Back to top button functionality
 window.onscroll = function () {
     scrollFunction();
