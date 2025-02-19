@@ -1437,18 +1437,18 @@ function downloadAcknowledgment(membershipNumber) {
 }
 
 
-// Function to validate file size
-function validateFileSize(fileInput) {
-    const file = fileInput.files[0];
-    const maxSize = 120 * 1024; // 80KB in bytes
+// // Function to validate file size
+// function validateFileSize(fileInput) {
+//     const file = fileInput.files[0];
+//     const maxSize = 2* 1024 * 1024; // 2MB in bytes
   
-    if (file && file.size > maxSize) {
-        alert('File size exceeds the 120KB limit. Please choose a smaller file.');
-        fileInput.value = ''; // Clear the input
-        return false;
-    }
-    return true;
-  }
+//     if (file && file.size > maxSize) {
+//         alert('File size exceeds the 2MB limit. Please choose a smaller file.');
+//         fileInput.value = ''; // Clear the input
+//         return false;
+//     }
+//     return true;
+//   }
   
   // Add event listener to the picture input
   document.getElementById('picture').addEventListener('change', function () {
