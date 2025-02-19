@@ -123,34 +123,67 @@ app.get("/download/:membershipNumber", (req, res) => {
 
       doc.pipe(res);
 
-      // Header with Logo
+     // Title in sky blue and bold
+doc.fontSize(17).fillColor("#87CEEB").font("Helvetica-Bold").text(
+  "Maliya Shitu Media Organization (Rundunar-Maliya)", 
+  { align: "center" }
+);
+// Address
+doc.moveDown(0);
+doc.fontSize(14).fillColor("#87CEEB").font("Helvetica").text("Address: Kano-Nigeria", { align: "center" });
+
+
+// Reset color and font for other content
+doc.fillColor("black").font("Helvetica");
+doc.moveDown(0);
+
+      // Logo with Circular Mask
       const logoPath = path.join(__dirname, "Masmo.jpg"); // Ensure "Masmo.jpg" is in the same directory
       if (fs.existsSync(logoPath)) {
-          doc.image(logoPath, 230, 20, { width: 150 });
+          doc.save();
+          doc.circle(280, doc.y + 50, 50).clip();
+          doc.image(logoPath, 230, doc.y, { width: 100, height: 100 });
+          doc.restore();
       }
-      doc.moveDown(3);
-      doc.fontSize(20).text("Maliya Shitu Media Organization (Rundunar-Maliya)", { align: "center" });
-      doc.moveDown();
-      doc.fontSize(16).text("Acknowledgment of Membership", { align: "center" });
-      doc.moveDown();
+      
+      doc.moveDown(7);
+      doc.font("Helvetica-Bold").text("Acknowledgment of Membership", { align: "center", underline: true });
+      doc.moveDown(0);
+      
+      // Acknowledgment Statement
+      doc.fontSize(12).font("Helvetica").text(
+  "This is to formally acknowledge that the individual mentioned below is a recognized member of the Maliya Shitu Media Organization (Rundunar-Maliya). Their dedication and commitment to the organization are highly valued, and we appreciate their continuous contributions towards the growth and success of our community.",
+  { align: "center" }
+);
+doc.moveDown(1);
 
-      // User Details
-      doc.fontSize(12).text(`Name: ${user.fullName}`);
-      doc.text(`Role: ${user.rank}`);
-      doc.text(`LGA: ${user.local_government}`);
-      doc.text(`Ward: ${user.ward}`);
-      doc.text(`Polling Unit: ${user.pollingUnit}`);
-      doc.text(`Phone: ${user.phoneNumber}`);
-      doc.text(`Membership Number: ${user.membershipNumber}`);
-      doc.moveDown();
-
-      // User Image (if uploaded)
+      // User Image (if uploaded) with Circular Mask
       if (user.imagePath) {
           const imgPath = path.join(__dirname, user.imagePath);
           if (fs.existsSync(imgPath)) {
-              doc.image(imgPath, 150, doc.y, { width: 100, height: 100 });
+              doc.save();
+              doc.circle(280, doc.y + 45, 50).clip();
+              doc.image(imgPath, 230, doc.y, { width: 100, height: 100 });
+              doc.restore();
           }
       }
+      doc.moveDown(8);
+
+      // User Details Section
+      doc.fontSize(12).text(`Full Name: ${user.fullName}`);
+      doc.moveDown();
+      doc.text(`Role in the Organization: ${user.rank}`);
+      doc.moveDown();
+      doc.text(`Local Government Area (LGA): ${user.local_government}`);
+      doc.moveDown();
+      doc.text(`Ward: ${user.ward}`);
+      doc.moveDown();
+      doc.text(`Polling Unit: ${user.pollingUnit}`);
+      doc.moveDown();
+      doc.text(`Contact Phone Number: ${user.phoneNumber}`);
+      doc.moveDown();
+      doc.text(`Membership Number: ${user.membershipNumber}`);
+      doc.moveDown(3);
 
       doc.end(); // Finalize PDF
   });
