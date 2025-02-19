@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Please generate your Membership Number before proceeding.");
         } else {
             // Extract the last two digits as the rank key
-            const selectedRankKey = membershipNumber.slice(-2); 
+            const selectedRankKey = membershipNumber.slice(-3); 
 
             // Get the assigned rank
             const assignedRank = getAssignedRank(selectedLevel, selectedRankKey);
@@ -180,7 +180,7 @@ const wardsByLGA = {
 'YAN': 'Yankatsari',
 'YAR': 'Yargaya'
 },
-'DAWAKI TOFA': {
+'DKT': {
 'DAN': 'DAN GUGUWA',
 'DAW': 'DAWAKI EAST',
 'DAW2': 'DAWAKI WEST',
@@ -635,76 +635,76 @@ const wardsByLGA = {
 
 const ranks = {
 'state': {
-'01': 'State Chairman',
-'02': 'State Vice Chairman',
-'03': 'State Secretary',
-'04': 'State Assistant Secretary',
-'05': 'State DG Media',
-'06': 'State Organizing Secretary',
-'07': 'State Assistant Organizing Secretary',
-'08': 'State Financial Secretary',
-'09': 'State Youth Leader',
-'10': 'State Deputy Youth Leader',
-'11': 'State Woman Leader',
-'12': 'State Deputy Woman Leader',
-'13': 'State PRO',
-'14': 'State Welfare Director',
-'15': 'State Deputy Welfare Director',
-'16': 'State Treasurer',
-'17': 'State Auditor',
-'18': 'Kano-Central Chairman',
-'19': 'Kano-Central Woman Leader',
-'20': 'Kano-North Chairman',
-'21': 'Kano-North Woman Leader',
-'22': 'Kano-South Chairman',
-'23': 'Kano-South Woman Leader',
-'24': 'State TikTok Leader',
-'25': 'State Deputy TikTok Leader',
-'26': 'State Deputy Instagram Leader'
+'001': 'State Chairman',
+'002': 'State Vice Chairman',
+'003': 'State Secretary',
+'004': 'State Assistant Secretary',
+'005': 'State DG Media',
+'006': 'State Organizing Secretary',
+'007': 'State Assistant Organizing Secretary',
+'008': 'State Financial Secretary',
+'009': 'State Youth Leader',
+'010': 'State Deputy Youth Leader',
+'011': 'State Woman Leader',
+'012': 'State Deputy Woman Leader',
+'013': 'State PRO',
+'014': 'State Welfare Director',
+'015': 'State Deputy Welfare Director',
+'016': 'State Treasurer',
+'017': 'State Auditor',
+'018': 'Kano-Central Chairman',
+'019': 'Kano-Central Woman Leader',
+'020': 'Kano-North Chairman',
+'021': 'Kano-North Woman Leader',
+'022': 'Kano-South Chairman',
+'023': 'Kano-South Woman Leader',
+'024': 'State TikTok Leader',
+'025': 'State Deputy TikTok Leader',
+'026': 'State Deputy Instagram Leader'
 },
 'lga': {
-'01': 'LGA Chairman',
-'02': 'LGA Vice Chairman',
-'03': 'LGA Secretary',
-'04': 'LGA Assistant Secretary',
-'05': 'LGA DG Media',
-'06': 'LGA Organizing Secretary',
-'07': 'LGA Assistant Organizing Secretary',
-'08': 'LGA Financial Secretary',
-'09': 'LGA Youth Leader',
-'10': 'LGA Deputy Youth Leader',
-'11': 'LGA Woman Leader',
-'12': 'LGA Deputy Woman Leader',
-'13': 'LGA PRO',
-'14': 'LGA Welfare Director',
-'15': 'LGA Deputy Welfare Director',
-'16': 'LGA Treasurer',
-'17': 'LGA Auditor',
-'18': 'LGA TikTok Leader',
-'19': 'LGA Deputy TikTok Leader',
-'20': 'LGA Deputy Instagram Leader'
+'001': 'LGA Chairman',
+'002': 'LGA Vice Chairman',
+'003': 'LGA Secretary',
+'004': 'LGA Assistant Secretary',
+'005': 'LGA DG Media',
+'006': 'LGA Organizing Secretary',
+'007': 'LGA Assistant Organizing Secretary',
+'008': 'LGA Financial Secretary',
+'009': 'LGA Youth Leader',
+'010': 'LGA Deputy Youth Leader',
+'011': 'LGA Woman Leader',
+'012': 'LGA Deputy Woman Leader',
+'013': 'LGA PRO',
+'014': 'LGA Welfare Director',
+'015': 'LGA Deputy Welfare Director',
+'016': 'LGA Treasurer',
+'017': 'LGA Auditor',
+'018': 'LGA TikTok Leader',
+'019': 'LGA Deputy TikTok Leader',
+'020': 'LGA Deputy Instagram Leader'
 },
 'ward': {
-'01': 'Ward Chairman',
-'02': 'Ward Vice Chairman',
-'03': 'Ward Secretary',
-'04': 'Ward Assistant Secretary',
-'05': 'Ward DG Media',
-'06': 'Ward Organizing Secretary',
-'07': 'Ward Assistant Organizing Secretary',
-'08': 'Ward Financial Secretary',
-'09': 'Ward Youth Leader',
-'10': 'Ward Deputy Youth Leader',
-'11': 'Ward Woman Leader',
-'12': 'Ward Deputy Woman Leader',
-'13': 'Ward PRO',
-'14': 'Ward Welfare Director',
-'15': 'Ward Deputy Welfare Director',
-'16': 'Ward Treasurer',
-'17': 'Ward Auditor',
-'18': 'Ward TikTok Leader',
-'19': 'Ward Deputy TikTok Leader',
-'20': 'Ward Deputy Instagram Leader'
+'001': 'Ward Chairman',
+'002': 'Ward Vice Chairman',
+'003': 'Ward Secretary',
+'004': 'Ward Assistant Secretary',
+'005': 'Ward DG Media',
+'006': 'Ward Organizing Secretary',
+'007': 'Ward Assistant Organizing Secretary',
+'008': 'Ward Financial Secretary',
+'009': 'Ward Youth Leader',
+'010': 'Ward Deputy Youth Leader',
+'011': 'Ward Woman Leader',
+'012': 'Ward Deputy Woman Leader',
+'013': 'Ward PRO',
+'014': 'Ward Welfare Director',
+'015': 'Ward Deputy Welfare Director',
+'016': 'Ward Treasurer',
+'017': 'Ward Auditor',
+'018': 'Ward TikTok Leader',
+'019': 'Ward Deputy TikTok Leader',
+'020': 'Ward Deputy Instagram Leader'
 }
 };
 
@@ -1061,7 +1061,7 @@ var wardsForLocalGovernment = {
         "Kanwa",
         "Masanawa"
     ],
-    "Kano Municipal": [
+    "KMC": [
         "Chedi",
         "Dan’Agundi",
         "Gandun Albasa",
@@ -1402,36 +1402,27 @@ for (let i = 1; i <= 100; i++) {
     option.textContent = option.value;
     pollingUnitSelect.appendChild(option);
 }
-
 document.getElementById("confirmationForm").addEventListener("submit", async function (event) {
-    event.preventDefault(); // Prevent default form submission
-
-    let formData = new FormData(this); // Capture form data, including file uploads
-
+    event.preventDefault();
+    
+    let formData = new FormData(this);
     try {
-        let response = await fetch("http://localhost:3000/register", {
-            method: "POST",
-            body: formData
-        });
-
+        let response = await fetch("http://localhost:3000/register", { method: "POST", body: formData });
         let result = await response.json();
-
+        
         if (result.success) {
-            // Show acknowledgment
+            let data = result.data;
             document.getElementById("confirmationSection").innerHTML = `
                 <div class="text-center">
+                    <h2>Maliya Shitu Media Organization (Rundunar-Maliya)</h2>
                     <img src="Masmo.jpg" alt="MASMO Logo" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
-                </div>
-                <h2 class="text-center">Registration Successful</h2>
-                <p class="text-center">Welcome, <strong>${result.data.fullName}</strong>!</p>
-                <p class="text-center">LGA: <strong>${result.data.local_government}</strong></p>
-                <p class="text-center">Rank: <strong>${result.data.rank}</strong></p>
-                <p class="text-center">Ward: <strong>${result.data.ward}</strong></p>
-                <p class="text-center">Membership Number: <strong>${result.data.membershipNumber}</strong></p>
-                <div class="text-center">
-                    <img src="${result.data.imagePath}" alt="Your Picture" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
-                </div>
-            `;
+                    <h3 class="text-success">Congratulations!</h3>
+                    <p>Dear <strong>${data.fullName}</strong>, you are now a member of MASMO.</p>
+                    <p>Role: <strong>${data.rank}</strong> | LGA: <strong>${data.local_government}</strong> | Ward: <strong>${data.ward}</strong></p>
+                    <p>Polling Unit: <strong>${data.pollingUnit}</strong> | Phone: <strong>${data.phoneNumber}</strong> <br>Membership No: <strong>${data.membershipNumber}</strong></p>
+                    <img src="${data.imagePath}" alt="Your Picture" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                    <button class="btn btn-primary mt-3" onclick="downloadAcknowledgment('${data.membershipNumber}')">Download Acknowledgment Letter</button>
+                </div>`;
         } else {
             alert("Registration failed: " + result.message);
         }
@@ -1440,14 +1431,19 @@ document.getElementById("confirmationForm").addEventListener("submit", async fun
         alert("An error occurred. Please try again.");
     }
 });
+function downloadAcknowledgment(membershipNumber) {
+    const encodedNumber = encodeURIComponent(membershipNumber); // Encode special characters
+    window.location.href = `http://localhost:3000/download/${encodedNumber}`;
+}
+
 
 // Function to validate file size
 function validateFileSize(fileInput) {
     const file = fileInput.files[0];
-    const maxSize = 80 * 1024; // 80KB in bytes
+    const maxSize = 120 * 1024; // 80KB in bytes
   
     if (file && file.size > maxSize) {
-        alert('File size exceeds the 80KB limit. Please choose a smaller file.');
+        alert('File size exceeds the 120KB limit. Please choose a smaller file.');
         fileInput.value = ''; // Clear the input
         return false;
     }
