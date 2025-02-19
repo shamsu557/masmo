@@ -23,6 +23,7 @@
     "pdfkit": "^0.15.0",
     "pdfkit-table": "^0.1.99",
     "punycode": "^2.3.1",
+    "qrcode": "^1.5.4",
     "redis": "^4.7.0"
   },
   "name": "school-web",
