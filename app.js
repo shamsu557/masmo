@@ -176,15 +176,15 @@ app.get("/download/:membershipNumber", async (req, res) => {
     doc.moveDown(1);
 
     // User Image (if uploaded) with Circular Mask
-    if (user.imagePath) {
-      const imgPath = path.join(__dirname, "uploads", user.imagePath);
-      if (fs.existsSync(imgPath)) {
-        doc.save();
-        doc.circle(280, doc.y + 45, 50).clip();
-        doc.image(imgPath, 230, doc.y, { width: 100, height: 100 });
-        doc.restore();
-      }
-    }
+         if (user.imagePath) {
+             const imgPath = path.join(__dirname, user.imagePath);
+             if (fs.existsSync(imgPath)) {
+                 doc.save();
+                 doc.circle(280, doc.y + 45, 50).clip();
+                 doc.image(imgPath, 230, doc.y, { width: 100, height: 100 });
+                 doc.restore();
+             }
+         }
     doc.moveDown(7);
 
     // User Details Section
@@ -248,7 +248,7 @@ app.get("/verify/:membershipNumber", async (req, res) => {
       <body>
         <div class="container">
           <h2>Maliya Shitu Media Organization</h2>
-          <p id="address">Kano-Nigeria</P>
+          <p id="address">Address: Kano-Nigeria</P>
           ${
             user.imagePath
               ? `<img src="https://masmo-1.onrender.com/verify/uploads/${user.imagePath}" alt="Member Photo">`
