@@ -277,7 +277,7 @@ app.get("/verify/:membershipNumber", async (req, res) => {
 
           ${
             user.imagePath
-              ? `<img src="https://localhost:3000/verify/uploads/${user.imagePath}" alt="Member Photo">`
+              ? `<img src="https://masmo-1.onrender.com/verify/uploads/${user.imagePath}" alt="Member Photo">`
               : `<p>No Image Available</p>`
           }
           <p class="label">Full Name:</p> <p>${user.fullName}</p>
