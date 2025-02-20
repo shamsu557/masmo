@@ -103,7 +103,6 @@ app.post("/register", upload.single("picture"), (req, res) => {
 });
 
 
-// Download Acknowledgment Letter
 
 // Download Acknowledgment Letter
 app.get("/download/:membershipNumber", async (req, res) => {
@@ -120,7 +119,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
 
     // Encode membershipNumber for QR URL
     const encodedMembershipNumber = encodeURIComponent(user.membershipNumber);
-    const qrContent = `https://masmo-1.onrender.com/verify/${encodedMembershipNumber}`;
+    const qrContent = `https://localhost:3000/verify/${encodedMembershipNumber}`;
 
     // Generate QR Code as a Data URL
     const qrCodeDataURL = await QRCode.toDataURL(qrContent);
@@ -170,10 +169,10 @@ app.get("/download/:membershipNumber", async (req, res) => {
 
     // Acknowledgment Statement
     doc.fontSize(12).font("Helvetica").text(
-      `This is to formally acknowledge that ${user.fullName} is a recognized member of the Maliya Shitu Media Organization (Rundunar-Maliya). Their dedication and commitment to the organization are highly valued.`,
+      `This is to formally acknowledge that ${user.fullName} is an accredited member of the Maliya Shitu Media Organization (Rundunar-Maliya). His/her dedication and commitment to the organization are highly valued.`,
       { align: "center" }
     );
-    doc.moveDown(1);
+    doc.moveDown(0);
 
     // User Image (if uploaded) with Circular Mask
          if (user.imagePath) {
@@ -185,33 +184,57 @@ app.get("/download/:membershipNumber", async (req, res) => {
                  doc.restore();
              }
          }
-    doc.moveDown(7);
+    doc.moveDown(8);
 
     // User Details Section
-    doc.fontSize(12).text(`Full Name: ${user.fullName}`);
-    doc.moveDown();
-    doc.text(`Role in the Organization: ${user.rank}`);
-    doc.moveDown();
-    doc.text(`Local Government Area (LGA): ${user.local_government}`);
-    doc.moveDown();
-    doc.text(`Ward: ${user.ward}`);
-    doc.moveDown();
-    doc.text(`Polling Unit: ${user.pollingUnit}`);
-    doc.moveDown();
-    doc.text(`Contact Phone Number: ${user.phoneNumber}`);
-    doc.moveDown();
-    doc.text(`Membership Number: ${user.membershipNumber}`);
-    doc.moveDown(0);
+const colors = ["#F0F0F0", "#FFFFFF"]; // Light Gray first, then White
+const containerColor = "#87CEEB"; // Sky Blue
+const textLines = [
+  `Full Name: ${user.fullName}`,
+  `Role in the Organization: ${user.rank}`,
+  `Local Government Area (LGA): ${user.local_government}`,
+  `Ward: ${user.ward}`,
+  `Polling Unit: ${user.pollingUnit}`,
+  `Contact Phone Number: ${user.phoneNumber}`,
+  `Membership Number: ${user.membershipNumber}`
+];
 
+// Define container dimensions
+const startX = 50;
+const startY = doc.y;
+const width = 500;
+const lineHeight = 25; // Increased for better spacing
+const containerHeight = textLines.length * lineHeight + 10; // Adjusted for padding
+
+// Draw the container (Sky Blue Background)
+doc.rect(startX - 5, startY - 5, width + 10, containerHeight).fill(containerColor);
+
+// Reset y position after drawing container
+let yPos = startY;
+
+textLines.forEach((line, index) => {
+  const bgColor = colors[index % 2]; // Alternate background color
+
+  // Draw background rectangle for each text line
+  doc.rect(startX, yPos, width, lineHeight).fill(bgColor);
+
+  // Set text color and write text on top of the background
+  doc.fillColor("#000000").text(line, startX + 5, yPos + 7); 
+
+  // Move down for the next line
+  yPos += lineHeight;
+});
+doc.moveDown(1);
     // Insert QR Code
-    doc.text("Scan the QR Code to verify membership:", { align: "center" });
-    doc.moveDown(0);
-
+    
     // Convert Base64 QR Code to Buffer and Add to PDF
     const qrImageBuffer = Buffer.from(qrCodeDataURL.split(",")[1], "base64");
     doc.image(qrImageBuffer, 200, doc.y, { width: 200, height: 200 });
 
     doc.moveDown(0);
+    doc.text("Scan the QR Code to verify membership:", { align: "center" });
+    doc.moveDown(0);
+
 
     doc.end(); // Finalize PDF
   });
@@ -241,17 +264,20 @@ app.get("/verify/:membershipNumber", async (req, res) => {
           img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 10px; }
           h2 { color:rgb(13, 146, 183); }
           p { font-size: 16px; color: #555; margin: 5px 0; }
-          #address { color:rgb(13, 146, 183); }
+          #address { color:rgb(13, 146, 183);margin:0;line-height: 1.2; }
           .label { font-weight: bold; color: #333; }
+          #logo {display: block; margin: 10px auto; width: 100px; height: 100px; border-radius: 50%;}
         </style>
       </head>
       <body>
         <div class="container">
           <h2>Maliya Shitu Media Organization</h2>
           <p id="address">Address: Kano-Nigeria</P>
+          <img id="logo" src="Masmo.jpg" alt="Masmo Logo">
+
           ${
             user.imagePath
-              ? `<img src="https://masmo-1.onrender.com/verify/uploads/${user.imagePath}" alt="Member Photo">`
+              ? `<img src="https://localhost:3000/verify/uploads/${user.imagePath}" alt="Member Photo">`
               : `<p>No Image Available</p>`
           }
           <p class="label">Full Name:</p> <p>${user.fullName}</p>
