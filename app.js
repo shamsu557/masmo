@@ -239,17 +239,19 @@ app.get("/verify/:membershipNumber", async (req, res) => {
           body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4; }
           .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
           img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 10px; }
-          h2 { color: #2c3e50; }
+          h2 { color:rgb(13, 146, 183); }
           p { font-size: 16px; color: #555; margin: 5px 0; }
+          #address { color:rgb(13, 146, 183); }
           .label { font-weight: bold; color: #333; }
         </style>
       </head>
       <body>
         <div class="container">
           <h2>Maliya Shitu Media Organization</h2>
+          <p id="address">Kano-Nigeria</P>
           ${
             user.imagePath
-              ? `<img src="http://localhost:3000/uploads/${user.imagePath}" alt="Member Photo">`
+              ? `<img src="https://masmo-1.onrender.com/verify/uploads/${user.imagePath}" alt="Member Photo">`
               : `<p>No Image Available</p>`
           }
           <p class="label">Full Name:</p> <p>${user.fullName}</p>
