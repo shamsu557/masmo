@@ -7,6 +7,7 @@ const fs = require("fs");
 const multer = require("multer");
 const session = require("express-session");
 const PDFDocument = require('pdfkit');
+const QRCode = require("qrcode"); // Import QRCode module
 
 const app = express();
 app.use(
@@ -103,8 +104,8 @@ app.post("/register", upload.single("picture"), (req, res) => {
 
 
 // Download Acknowledgment Letter
-const QRCode = require("qrcode"); // Import QRCode module
 
+// Download Acknowledgment Letter
 app.get("/download/:membershipNumber", async (req, res) => {
   const membershipNumber = decodeURIComponent(req.params.membershipNumber);
 
@@ -117,24 +118,9 @@ app.get("/download/:membershipNumber", async (req, res) => {
 
     const user = results[0];
 
-    // Generate QR Code Data (Content of the Acknowledgment Letter)
-    const qrContent = `
-      Maliya Shitu Media Organization (Rundunar-Maliya)
-      Address: Kano-Nigeria
-
-      Acknowledgment of Membership
-
-      This is to formally acknowledge that ${user.fullName} is a recognized member of the Maliya Shitu Media Organization (Rundunar-Maliya).
-      Their dedication and commitment to the organization are highly valued.
-
-      - Full Name: ${user.fullName}
-      - Role: ${user.rank}
-      - Local Government Area (LGA): ${user.local_government}
-      - Ward: ${user.ward}
-      - Polling Unit: ${user.pollingUnit}
-      - Contact Phone Number: ${user.phoneNumber}
-      - Membership Number: ${user.membershipNumber}
-    `;
+    // Encode membershipNumber for QR URL
+    const encodedMembershipNumber = encodeURIComponent(user.membershipNumber);
+    const qrContent = `https://masmo-1.onrender.com/verify/${encodedMembershipNumber}`;
 
     // Generate QR Code as a Data URL
     const qrCodeDataURL = await QRCode.toDataURL(qrContent);
@@ -191,7 +177,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
 
     // User Image (if uploaded) with Circular Mask
     if (user.imagePath) {
-      const imgPath = path.join(__dirname, user.imagePath);
+      const imgPath = path.join(__dirname, "uploads", user.imagePath);
       if (fs.existsSync(imgPath)) {
         doc.save();
         doc.circle(280, doc.y + 45, 50).clip();
@@ -199,7 +185,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
         doc.restore();
       }
     }
-    doc.moveDown(8);
+    doc.moveDown(7);
 
     // User Details Section
     doc.fontSize(12).text(`Full Name: ${user.fullName}`);
@@ -215,7 +201,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
     doc.text(`Contact Phone Number: ${user.phoneNumber}`);
     doc.moveDown();
     doc.text(`Membership Number: ${user.membershipNumber}`);
-    doc.moveDown(1);
+    doc.moveDown(0);
 
     // Insert QR Code
     doc.text("Scan the QR Code to verify membership:", { align: "center" });
@@ -228,6 +214,55 @@ app.get("/download/:membershipNumber", async (req, res) => {
     doc.moveDown(0);
 
     doc.end(); // Finalize PDF
+  });
+});
+
+// Verification Page Route
+app.get("/verify/:membershipNumber", async (req, res) => {
+  const membershipNumber = decodeURIComponent(req.params.membershipNumber);
+
+  // Fetch user details from the database
+  const sql = `SELECT * FROM members WHERE membershipNumber = ?`;
+  db.query(sql, [membershipNumber], (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(404).send("User not found");
+    }
+
+    const user = results[0];
+
+    // Send the verification page with user details
+    res.send(`
+      <html>
+      <head>
+        <title>Member Verification</title>
+        <style>
+          body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4; }
+          .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+          img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 10px; }
+          h2 { color: #2c3e50; }
+          p { font-size: 16px; color: #555; margin: 5px 0; }
+          .label { font-weight: bold; color: #333; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h2>Maliya Shitu Media Organization</h2>
+          ${
+            user.imagePath
+              ? `<img src="http://localhost:3000/uploads/${user.imagePath}" alt="Member Photo">`
+              : `<p>No Image Available</p>`
+          }
+          <p class="label">Full Name:</p> <p>${user.fullName}</p>
+          <p class="label">Role:</p> <p>${user.rank}</p>
+          <p class="label">Local Government Area (LGA):</p> <p>${user.local_government}</p>
+          <p class="label">Ward:</p> <p>${user.ward}</p>
+          <p class="label">Polling Unit:</p> <p>${user.pollingUnit}</p>
+          <p class="label">Contact:</p> <p>${user.phoneNumber}</p>
+          <p class="label">Membership Number:</p> <p>${user.membershipNumber}</p>
+        </div>
+      </body>
+      </html>
+    `);
   });
 });
 
