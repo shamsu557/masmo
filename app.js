@@ -119,7 +119,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
 
     // Encode membershipNumber for QR URL
     const encodedMembershipNumber = encodeURIComponent(user.membershipNumber);
-    const qrContent = `https://localhost:3000/verify/${encodedMembershipNumber}`;
+    const qrContent = `https://masmo-1.onrender.com/verify/${encodedMembershipNumber}`;
 
     // Generate QR Code as a Data URL
     const qrCodeDataURL = await QRCode.toDataURL(qrContent);
@@ -172,7 +172,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
       `This is to formally acknowledge that ${user.fullName} is an accredited member of the Maliya Shitu Media Organization (Rundunar-Maliya). His/her dedication and commitment to the organization are highly valued.`,
       { align: "center" }
     );
-    doc.moveDown(1);
+    doc.moveDown(0);
 
     // User Image (if uploaded) with Circular Mask
          if (user.imagePath) {
