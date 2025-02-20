@@ -172,7 +172,7 @@ app.get("/download/:membershipNumber", async (req, res) => {
       `This is to formally acknowledge that ${user.fullName} is an accredited member of the Maliya Shitu Media Organization (Rundunar-Maliya). His/her dedication and commitment to the organization are highly valued.`,
       { align: "center" }
     );
-    doc.moveDown(0);
+    doc.moveDown(1);
 
     // User Image (if uploaded) with Circular Mask
          if (user.imagePath) {
