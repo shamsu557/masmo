@@ -273,7 +273,7 @@ app.get("/verify/:membershipNumber", async (req, res) => {
         <div class="container">
           <h2>Maliya Shitu Media Organization</h2>
           <p id="address">Address: Kano-Nigeria</P>
-          <img id="logo" src="Masmo.jpg" alt="Masmo Logo">
+          <img id="logo" src="masmo.jpg" alt="Masmo Logo">
 
           ${
             user.imagePath
